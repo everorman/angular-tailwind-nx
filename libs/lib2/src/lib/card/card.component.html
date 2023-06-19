@@ -1,7 +1,16 @@
 <div class="h-full flex flex-col p-lg bg-secondary-light shadow-md hover:shadow-lg">
   <div class="card-title">{{ title }}</div>
   <p class="card-content">
-    <ng-content></ng-content>
+    <ng-template #cardBodyTemplateDefault>
+      <span>Add ng-template with #cardButtonTemplate</span>
+    </ng-template>
+    <ng-container [ngTemplateOutlet]="cardBodyTemplateRef || cardBodyTemplateDefault"></ng-container>
   </p>
-  <angular-nx-tailwind-button class="flex self-end" [href]="url">Show me!</angular-nx-tailwind-button>
+  <ng-template #cardButtonTemplateDefault>
+    <angular-nx-tailwind-button class="flex self-end" [href]="url">Show me!</angular-nx-tailwind-button>
+  </ng-template>
+
+  <ng-container [ngTemplateOutlet]="cardButtonTemplateRef || cardButtonTemplateDefault"></ng-container>
+
+
 </div>
