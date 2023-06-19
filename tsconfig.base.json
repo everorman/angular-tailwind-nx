@@ -14,7 +14,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@angular-nx-tailwind/lib1": ["libs/lib1/src/index.ts"],
+      "@angular-nx-tailwind/lib2": ["libs/lib2/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
