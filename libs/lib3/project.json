@@ -6,7 +6,7 @@
   "tags": [],
   "projectType": "library",
   "targets": {
-    "build": {
+    "build-angular": {
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
@@ -19,6 +19,65 @@
         },
         "development": {
           "tsConfig": "libs/lib3/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "build-themes": {
+      "executor": "nx:run-commands",
+      "outputs": ["dist/libs/lib3/themes"],
+      "configurations": {
+        "production": {
+          "commands": [
+            "tailwindcss -c libs/lib3/tailwind.config.js -i ./libs/lib3/src/styles/teal.css -o ./dist/libs/lib3/themes/teal.css -m",
+            "tailwindcss -c libs/lib3/tailwind.config.js -i ./libs/lib3/src/styles/indigo.css -o ./dist/libs/lib3/themes/indigo.css -m"
+          ]
+        },
+        "development": {
+          "commands": [
+            "tailwindcss -c libs/lib3/tailwind.config.js -i ./libs/lib3/src/styles/teal.css -o ./dist/libs/lib3/themes/teal.css",
+            "tailwindcss -c libs/lib3/tailwind.config.js -i ./libs/lib3/src/styles/indigo.css -o ./dist/libs/lib3/themes/indigo.css"
+          ]
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "build-lib": {
+      "executor": "nx:run-commands",
+      "outputs": ["dist/libs/lib3"],
+      "configurations": {
+        "production": {
+          "commands": [
+            "nx run lib3:build-angular:production",
+            "nx run lib3:build-themes:production"
+          ]
+        },
+        "development": {
+          "commands": [
+            "nx run lib3:build-angular:development",
+            "nx run lib3:build-themes:development"
+          ]
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "outputs": ["dist/libs/lib3"],
+      "configurations": {
+        "production": {
+          "commands": [
+            "rm -rf dist/libs/lib3",
+            "nx run lib3:build-lib:production "
+          ],
+          "parallel": false
+        },
+        "development": {
+          "commands": [
+            "rm -rf dist/libs/lib3",
+            "nx run lib3:build-lib:development"
+          ],
+          "parallel": false
         }
       },
       "defaultConfiguration": "production"
