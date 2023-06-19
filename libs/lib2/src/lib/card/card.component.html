@@ -3,8 +3,5 @@
   <p class="card-content">
     <ng-content></ng-content>
   </p>
-  <a class="py-sm px-md bg-primary-dark hover:bg-primary text-white flex self-end" href="{{ url }}" target="_blank"
-    rel="noopener noreferrer">
-    Show me!
-  </a>
+  <angular-nx-tailwind-button class="flex self-end" [href]="url">Show me!</angular-nx-tailwind-button>
 </div>
