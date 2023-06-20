@@ -10,3 +10,8 @@ export interface Category {
   id: number;
   name: string;
 }
+
+export interface DataResult<T> {
+  data?: T;
+  total?: number;
+}

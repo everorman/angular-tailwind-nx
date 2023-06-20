@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Product } from '../services/product.types';
-import { Observable } from 'rxjs';
+import { DataResult, Product } from '../services/product.types';
+import { Observable, map, of } from 'rxjs';
 import { GridDataResult, PageChangeEvent } from '@progress/kendo-angular-grid';
 import { SortDescriptor } from '@progress/kendo-data-query';
 import { ProductService } from '../services/product.service';
@@ -12,8 +12,7 @@ import { ProductService } from '../services/product.service';
   styleUrls: ['./product-list.component.scss'],
 })
 export class ProductListComponent implements OnInit {
-  products?: Product[];
-  public gridItems?: Observable<Product[]>;
+  public gridItems?: Observable<GridDataResult>;
   public pageSize = 10;
   public skip = 0;
   public sortDescriptor: SortDescriptor[] = [];
@@ -25,7 +24,7 @@ export class ProductListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.products = this.route.snapshot.data as Product[];
+    this.gridItems = of(this.route.snapshot.data['products']);
   }
 
   public pageChange(event: PageChangeEvent): void {
@@ -39,6 +38,10 @@ export class ProductListComponent implements OnInit {
   }
 
   private loadGridItems(): void {
-    this.gridItems = this.service.getProducts(this.skip, this.pageSize);
+    this.gridItems = this.service.getProducts(this.skip, this.pageSize).pipe(
+      map((items: Product[]) => {
+        return { data: items, total: 4 };
+      })
+    );
   }
 }
