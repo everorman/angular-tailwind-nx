@@ -5,8 +5,7 @@ import { ExampleComponent } from './example/example.component';
 const routes: Routes = [
   {
     path: 'test',
-    loadChildren: () =>
-      import('./test/test-routing.module').then((m) => m.TestRoutingModule),
+    loadChildren: () => import('./test/test.module').then((m) => m.TestModule),
   },
   {
     path: '**',
@@ -15,7 +14,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
