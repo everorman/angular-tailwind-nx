@@ -1,6 +1,38 @@
-.example-icon {
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+.icon {
   padding: 0 14px;
 }
-.example-spacer {
+.spacer {
   flex: 1 1 auto;
+}
+
+.sidenav {
+  padding: 20px;
+  min-width: 300px;
+}
+
+.app-container {
+  width: 100%;
+  height: 100%;
+}
+
+.toolbar {
+  width: 100%;
+}
+
+.mat-drawer-content {
+  width: 100%;
+}
+
+.app-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  color: rgb(9, 2, 24);
+  text-align: center;
+  margin: 0px;
+  background-color: gray;
 }

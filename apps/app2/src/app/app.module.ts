@@ -5,10 +5,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ExampleComponent } from './example/example.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GridModule } from '@progress/kendo-angular-grid';
+
 
 @NgModule({
   declarations: [AppComponent, ExampleComponent],
-  imports: [BrowserModule, AppRoutingModule, Lib1Module, Lib2Module],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    Lib1Module,
+    Lib2Module,
+    GridModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
