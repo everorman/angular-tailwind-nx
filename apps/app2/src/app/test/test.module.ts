@@ -11,6 +11,7 @@ import { ProductService } from './services/product.service';
 import { ProductDialogComponent } from './product-dialog/product-dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
+import { TopBarComponent } from './top-bar/top-bar.component';
 
 const routes: Routes = [
   {
@@ -45,6 +46,7 @@ const routes: Routes = [
     ProductListComponent,
     ProductDialogComponent,
     ProfileComponent,
+    TopBarComponent,
   ],
   imports: [
     RouterModule.forChild(routes),

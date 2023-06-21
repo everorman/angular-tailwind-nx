@@ -11,6 +11,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatSidenavModule,
     MatRadioModule,
     MatDividerModule,
+    MatExpansionModule,
   ],
   exports: [
     MatToolbarModule,
@@ -40,6 +42,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatSidenavModule,
     MatRadioModule,
     MatDividerModule,
+    MatExpansionModule,
   ],
 })
 export class AngularMaterialModule {}
