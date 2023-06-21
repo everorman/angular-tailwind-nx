@@ -8,6 +8,8 @@ import { productsResolver } from './resolvers/products.resolver';
 import { HttpClientModule } from '@angular/common/http';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { ProductService } from './services/product.service';
+import { ProductDialogComponent } from './product-dialog/product-dialog.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -30,13 +32,15 @@ const routes: Routes = [
   },
 ];
 @NgModule({
-  declarations: [TestComponent, ProductListComponent],
+  declarations: [TestComponent, ProductListComponent, ProductDialogComponent],
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
     AngularMaterialModule,
     HttpClientModule,
     GridModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [ProductService],
 })

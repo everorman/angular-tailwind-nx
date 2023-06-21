@@ -1,0 +1,33 @@
+<h1 mat-dialog-title>Product detail</h1>
+<div mat-dialog-content>
+    <form [formGroup]="formProduct" class="w-full flex flex-col">
+        <mat-form-field>
+            <mat-label>ID</mat-label>
+            <input matInput formControlName="id" required>
+            <mat-error *ngIf="formProduct.get('id')?.errors">{{getErrorMessage(formProduct.get('id'))}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Title</mat-label>
+            <input matInput formControlName="title" required>
+            <mat-error
+                *ngIf="formProduct.get('title')?.errors">{{getErrorMessage(formProduct.get('title'))}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Description</mat-label>
+            <input matInput formControlName="description" required>
+            <mat-error
+                *ngIf="formProduct.get('description')?.errors">{{getErrorMessage(formProduct.get('description'))}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Price</mat-label>
+            <input matInput formControlName="price" required>
+            <mat-error
+                *ngIf="formProduct.get('price')?.errors">{{getErrorMessage(formProduct.get('price'))}}</mat-error>
+        </mat-form-field>
+    </form>
+
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button cdkFocusInitial>Ok</button>
+</div>

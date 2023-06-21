@@ -5,6 +5,8 @@ import { Observable, map, of } from 'rxjs';
 import { GridDataResult, PageChangeEvent } from '@progress/kendo-angular-grid';
 import { SortDescriptor } from '@progress/kendo-data-query';
 import { ProductService } from '../services/product.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ProductDialogComponent } from '../product-dialog/product-dialog.component';
 
 @Component({
   selector: 'angular-nx-tailwind-product-list',
@@ -20,7 +22,8 @@ export class ProductListComponent implements OnInit {
 
   constructor(
     protected route: ActivatedRoute,
-    protected service: ProductService
+    protected service: ProductService,
+    protected dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -43,5 +46,18 @@ export class ProductListComponent implements OnInit {
         return { data: items, total: 4 };
       })
     );
+  }
+
+  editClick($event: any) {
+    const dialogRef = this.dialog.open(ProductDialogComponent, {
+      data: $event,
+      maxWidth: '800px',
+      minWidth: '400px',
+      width: '100%',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+    });
   }
 }
