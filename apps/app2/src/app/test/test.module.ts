@@ -10,6 +10,7 @@ import { GridModule } from '@progress/kendo-angular-grid';
 import { ProductService } from './services/product.service';
 import { ProductDialogComponent } from './product-dialog/product-dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,13 @@ const routes: Routes = [
           products: productsResolver,
         },
       },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+        resolve: {
+          products: productsResolver,
+        },
+      },
       { path: '', redirectTo: '/test/list', pathMatch: 'full' },
       {
         path: '**',
@@ -32,7 +40,12 @@ const routes: Routes = [
   },
 ];
 @NgModule({
-  declarations: [TestComponent, ProductListComponent, ProductDialogComponent],
+  declarations: [
+    TestComponent,
+    ProductListComponent,
+    ProductDialogComponent,
+    ProfileComponent,
+  ],
   imports: [
     RouterModule.forChild(routes),
     CommonModule,

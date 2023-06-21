@@ -5,10 +5,5 @@
     <kendo-grid-column field="title" title="Title"></kendo-grid-column>
     <kendo-grid-column field="description" title="Description"></kendo-grid-column>
     <kendo-grid-column field="price" title="Price"></kendo-grid-column>
-    <kendo-grid-column field="description" filter="boolean">
-        <ng-template kendoGridCellTemplate let-dataItem>
-            <input type="checkbox" [checked]="dataItem.Discontinued" disabled />
-        </ng-template>
-    </kendo-grid-column>
     <!-- ... -->
 </kendo-grid>
