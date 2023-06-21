@@ -1,12 +1,9 @@
 import { Component, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AbstractControl, FormGroup } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { tap } from 'rxjs';
+import { ProductService } from '../services/product.service';
 import { Product } from '../services/product.types';
-import {
-  AbstractControl,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
 
 @Component({
   selector: 'angular-nx-tailwind-product-dialog',
@@ -14,20 +11,35 @@ import {
   styleUrls: ['./product-dialog.component.scss'],
 })
 export class ProductDialogComponent {
-  formProduct = new FormGroup({
-    id: new FormControl('', [Validators.required]),
-    title: new FormControl('', [Validators.required]),
-    description: new FormControl('', [Validators.required]),
-    price: new FormControl('', [Validators.required]),
-    category: new FormControl(''),
-  });
+  formProduct!: FormGroup;
   constructor(
     public dialogRef: MatDialogRef<ProductDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Product
-  ) {}
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private service: ProductService
+  ) {
+    const { item, form } = data;
+    const itemData = item['dataItem'];
+    this.formProduct = form;
+    this.formProduct.patchValue(itemData as any);
+  }
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  save(): any {
+    if (this.formProduct.invalid) {
+      this.formProduct.markAllAsTouched();
+    } else {
+      this.service
+        .update(this.formProduct.value as any as Product)
+        .pipe(
+          tap((result) => {
+            this.dialogRef.close(result);
+          })
+        )
+        .subscribe();
+    }
   }
 
   getErrorMessage(

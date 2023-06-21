@@ -1,10 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { ResolveFn } from '@angular/router';
-import { Product } from '../services/product.types';
-import { ProductService } from '../services/product.service';
-import { map } from 'rxjs';
 import { GridDataResult } from '@progress/kendo-angular-grid';
+import { map } from 'rxjs';
+import { ProductService } from '../services/product.service';
+import { Product } from '../services/product.types';
 
 export const productsResolver: ResolveFn<GridDataResult> = (route, state) => {
   const productService = inject(ProductService);

@@ -13,4 +13,10 @@ export class ProductService {
     const routePath = `https://api.escuelajs.co/api/v1/products?offset=${skip}&limit=${pageSize}`;
     return this.http.get<Product[]>(routePath);
   }
+
+  update(data: Product) {
+    const path = `https://api.escuelajs.co/api/v1/products/${data.id}`;
+    delete data.id;
+    return this.http.put(path, data);
+  }
 }
