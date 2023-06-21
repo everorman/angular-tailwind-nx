@@ -22,6 +22,14 @@
 }
 
 .sidenav {
-  padding: 20px;
   min-width: 300px;
+
+  .sidenav-header {
+    height: 120px;
+
+    img {
+      width: 80px;
+      height: 80px;
+    }
+  }
 }

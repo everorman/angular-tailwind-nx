@@ -1,5 +1,24 @@
 <mat-drawer-container class="app-container">
     <mat-drawer #drawer class="sidenav" mode="side">
+        <div class="sidenav-header flex bg-primary p-sm mb-md">
+            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt=""
+                class="rounded-full max-w-md">
+            <span class="text-lg text-white ml-sm">Demo User</span>
+        </div>
+        <div class="flex-1 px-1 space-y-2 overflow-hidden hover:overflow-auto">
+            <a [routerLink]="'list'"
+                class="flex items-center w-full space-x-2 text-primary-dark rounded-sm p-sm hover:text-white hover:bg-primary">
+                <mat-icon>home</mat-icon>
+                <span class="px-sm">Home</span>
+            </a>
+        </div>
+        <div class="flex-1 px-1 space-y-2 overflow-hidden hover:overflow-auto">
+            <a [routerLink]="'profile'"
+                class="flex items-center w-full space-x-2 text-primary-dark rounded-sm p-sm hover:text-white hover:bg-primary">
+                <mat-icon>person</mat-icon>
+                <span class="px-sm">Profile</span>
+            </a>
+        </div>
     </mat-drawer>
 
     <div class="sidenav-content">
