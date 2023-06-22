@@ -1,9 +1,34 @@
-<kendo-grid [data]="gridItems | async" [pageSize]="pageSize" [skip]="skip" [pageable]="true"
-    (pageChange)="pageChange($event)" [sortable]="true" [sort]="sortDescriptor" (sortChange)="handleSortChange($event)"
-    [height]="400" (cellClick)="editClick($event)" [loading]="loading">
+<div class="flex justify-end items-center mb-sm">
+    <strong class="mr-sm">Filter by category:</strong>
+    <kendo-dropdownlist class="max-w-md" [data]="dropDownItems" [defaultItem]="defaultItem" textField="text"
+        valueField="value" (valueChange)="handleFilterChange($event)">
+    </kendo-dropdownlist>
+</div>
+
+<kendo-grid [kendoGridBinding]="(gridItems | async) || []" [pageSize]="pageSize" [pageable]="true" [sortable]="true"
+    (sortChange)="handleSortChange($event)" [height]="800" (cellClick)="editClick($event)" [loading]="loading">
+    <ng-template kendoGridToolbarTemplate>
+        <button kendoGridPDFCommand [svgIcon]="filePdfIcon">
+            Export to PDF
+        </button>
+    </ng-template>
     <kendo-grid-column field="id" title="ID"></kendo-grid-column>
     <kendo-grid-column field="title" title="Title"></kendo-grid-column>
     <kendo-grid-column field="description" title="Description"></kendo-grid-column>
     <kendo-grid-column field="price" title="Price"></kendo-grid-column>
     <!-- ... -->
+    <kendo-grid-pdf fileName="Products.pdf" [allPages]="true" paperSize="A4" [repeatHeaders]="true">
+        <kendo-grid-pdf-margin top="2cm" left="1cm" right="1cm" bottom="2cm"></kendo-grid-pdf-margin>
+        <ng-template kendoGridPDFTemplate let-pageNum="pageNum" let-totalPages="totalPages">
+            <div class="page-template">
+                <div class="header">
+                    <div style="float: right">
+                        Page {{ pageNum }} of {{ totalPages }}
+                    </div>
+                    Multi-page grid with automatic page breaking
+                </div>
+                <div class="footer">Page {{ pageNum }} of {{ totalPages }}</div>
+            </div>
+        </ng-template>
+    </kendo-grid-pdf>
 </kendo-grid>

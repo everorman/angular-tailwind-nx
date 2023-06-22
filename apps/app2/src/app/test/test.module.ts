@@ -1,16 +1,17 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { AngularMaterialModule } from '../angular-material/angular-material.module';
-import { ProductListComponent } from './product-list/product-list.component';
-import { TestComponent } from './test.component';
-import { productsResolver } from './resolvers/products.resolver';
 import { HttpClientModule } from '@angular/common/http';
-import { GridModule } from '@progress/kendo-angular-grid';
-import { ProductService } from './services/product.service';
-import { ProductDialogComponent } from './product-dialog/product-dialog.component';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
+import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+import { GridModule, PDFModule } from '@progress/kendo-angular-grid';
+import { AngularMaterialModule } from '../angular-material/angular-material.module';
+import { ProductDialogComponent } from './product-dialog/product-dialog.component';
+import { ProductListComponent } from './product-list/product-list.component';
 import { ProfileComponent } from './profile/profile.component';
+import { productsResolver } from './resolvers/products.resolver';
+import { ProductService } from './services/product.service';
+import { TestComponent } from './test.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 
 const routes: Routes = [
@@ -56,6 +57,8 @@ const routes: Routes = [
     GridModule,
     ReactiveFormsModule,
     FormsModule,
+    DropDownsModule,
+    PDFModule,
   ],
   providers: [ProductService],
 })

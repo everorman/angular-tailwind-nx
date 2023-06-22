@@ -1,17 +1,19 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { DataResult, Product } from '../services/product.types';
-import { Observable, finalize, map, of } from 'rxjs';
 import {
   GridComponent,
   GridDataResult,
   PageChangeEvent,
 } from '@progress/kendo-angular-grid';
 import { SortDescriptor } from '@progress/kendo-data-query';
-import { ProductService } from '../services/product.service';
-import { MatDialog } from '@angular/material/dialog';
+import { Observable, finalize, map, of } from 'rxjs';
 import { ProductDialogComponent } from '../product-dialog/product-dialog.component';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ProductService } from '../services/product.service';
+import { Product } from '../services/product.types';
+import { categories } from './categories';
+import { SVGIcon, filePdfIcon } from '@progress/kendo-svg-icons';
 
 @Component({
   selector: 'angular-nx-tailwind-product-list',
@@ -21,12 +23,16 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class ProductListComponent implements OnInit {
   @ViewChild(GridComponent)
   private grid!: GridComponent;
-  public gridItems!: Observable<GridDataResult>;
-  public pageSize = 10;
-  public skip = 0;
-  public sortDescriptor: SortDescriptor[] = [];
-  public filterTerm = null;
+  gridItems: Observable<any[]> = of([]);
+  pageSize = 10;
+  skip = 0;
+  sortDescriptor: SortDescriptor[] = [];
+  filterTerm = '';
   loading = false;
+
+  dropDownItems = categories;
+  defaultItem = { text: 'Filter by Category', value: null };
+  public filePdfIcon: SVGIcon = filePdfIcon;
 
   formProduct = new FormGroup({
     id: new FormControl('', [Validators.required]),
@@ -58,12 +64,9 @@ export class ProductListComponent implements OnInit {
 
   private loadGridItems(): void {
     this.loading = true;
-    this.gridItems = this.service.getProducts(this.skip, this.pageSize).pipe(
-      map((items: Product[]) => {
-        return { data: items, total: 4 };
-      }),
-      finalize(() => (this.loading = false))
-    );
+    this.gridItems = this.service
+      .getProducts(this.skip, this.pageSize, this.filterTerm)
+      .pipe(finalize(() => (this.loading = false)));
   }
 
   editClick(item: any) {
@@ -82,5 +85,11 @@ export class ProductListComponent implements OnInit {
         this.loadGridItems();
       }
     });
+  }
+
+  public handleFilterChange(item: any): void {
+    this.filterTerm = item.value;
+    this.skip = 0;
+    this.loadGridItems();
   }
 }

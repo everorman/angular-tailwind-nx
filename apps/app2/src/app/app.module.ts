@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { ExampleComponent } from './example/example.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GridModule } from '@progress/kendo-angular-grid';
+import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+
 
 
 @NgModule({
@@ -18,6 +20,7 @@ import { GridModule } from '@progress/kendo-angular-grid';
     Lib1Module,
     Lib2Module,
     GridModule,
+    DropDownsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

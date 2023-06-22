@@ -9,8 +9,8 @@ import { Product } from './product.types';
 export class ProductService {
   constructor(private http: HttpClient) {}
 
-  getProducts(skip = 0, pageSize = 10): Observable<Product[]> {
-    const routePath = `https://api.escuelajs.co/api/v1/products?offset=${skip}&limit=${pageSize}`;
+  getProducts(skip = 0, pageSize = 10, filterTerm = ''): Observable<Product[]> {
+    const routePath = `https://api.escuelajs.co/api/v1/products?&categoryId=${filterTerm}`;
     return this.http.get<Product[]>(routePath);
   }
 
