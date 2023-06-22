@@ -9,6 +9,7 @@ import { Observable, finalize, of } from 'rxjs';
 import { ProductDialogComponent } from '../product-dialog/product-dialog.component';
 import { ProductService } from '../services/product.service';
 import { categories } from './categories';
+import { Category } from '../services/product.types';
 
 @Component({
   selector: 'angular-nx-tailwind-product-list',
@@ -109,8 +110,8 @@ export class ProductListComponent implements OnInit {
     });
   }
 
-  public handleFilterChange(item: any): void {
-    this.filterTerm = item.value;
+  public handleFilterChange(item: Category): void {
+    this.filterTerm = item.id;
     this.skip = 0;
     this.loadGridItems();
   }
