@@ -25,6 +25,7 @@ export class ProductDialogComponent implements OnInit, OnDestroy {
     const itemData = item['dataItem'];
     this.isNew = isNew;
     this.formProduct = form;
+    console.log('data dialog', itemData);
     this.formProduct.patchValue(itemData as any);
   }
 

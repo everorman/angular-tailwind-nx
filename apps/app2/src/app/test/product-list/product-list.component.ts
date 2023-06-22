@@ -36,6 +36,7 @@ export class ProductListComponent implements OnInit {
     description: new FormControl('', [Validators.required]),
     price: new FormControl('', [Validators.required]),
     category: new FormControl(''),
+    creationAt: new FormControl(''),
   });
 
   formNewProduct = new FormGroup({

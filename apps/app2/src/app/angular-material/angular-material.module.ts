@@ -13,6 +13,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   imports: [
@@ -30,6 +32,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatDividerModule,
     MatExpansionModule,
     MatAutocompleteModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   exports: [
     MatToolbarModule,
@@ -46,6 +50,9 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatDividerModule,
     MatExpansionModule,
     MatAutocompleteModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
+  providers: [MatNativeDateModule],
 })
 export class AngularMaterialModule {}

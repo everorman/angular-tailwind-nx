@@ -4,6 +4,7 @@ export interface Product {
   description: string;
   price: number;
   category: Category;
+  creationAt?: string;
 }
 
 export interface Category {

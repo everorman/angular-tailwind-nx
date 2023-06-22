@@ -13,6 +13,7 @@ import { productsResolver } from './resolvers/products.resolver';
 import { ProductService } from './services/product.service';
 import { TestComponent } from './test.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 const routes: Routes = [
   {
@@ -60,6 +61,6 @@ const routes: Routes = [
     DropDownsModule,
     PDFModule,
   ],
-  providers: [ProductService],
+  providers: [ProductService, MatDatepickerModule],
 })
 export class TestModule {}
