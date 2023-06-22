@@ -2,18 +2,13 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import {
-  GridComponent,
-  GridDataResult,
-  PageChangeEvent,
-} from '@progress/kendo-angular-grid';
+import { GridComponent, PageChangeEvent } from '@progress/kendo-angular-grid';
 import { SortDescriptor } from '@progress/kendo-data-query';
-import { Observable, finalize, map, of } from 'rxjs';
+import { SVGIcon, filePdfIcon } from '@progress/kendo-svg-icons';
+import { Observable, finalize, of } from 'rxjs';
 import { ProductDialogComponent } from '../product-dialog/product-dialog.component';
 import { ProductService } from '../services/product.service';
-import { Product } from '../services/product.types';
 import { categories } from './categories';
-import { SVGIcon, filePdfIcon } from '@progress/kendo-svg-icons';
 
 @Component({
   selector: 'angular-nx-tailwind-product-list',
@@ -27,15 +22,22 @@ export class ProductListComponent implements OnInit {
   pageSize = 10;
   skip = 0;
   sortDescriptor: SortDescriptor[] = [];
-  filterTerm = '';
+  filterTerm = 0;
   loading = false;
 
   dropDownItems = categories;
-  defaultItem = { text: 'Filter by Category', value: null };
+  defaultItem = { name: 'Filter by Category', id: null };
   public filePdfIcon: SVGIcon = filePdfIcon;
 
   formProduct = new FormGroup({
     id: new FormControl('', [Validators.required]),
+    title: new FormControl('', [Validators.required]),
+    description: new FormControl('', [Validators.required]),
+    price: new FormControl('', [Validators.required]),
+    category: new FormControl(''),
+  });
+
+  formNewProduct = new FormGroup({
     title: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
     price: new FormControl('', [Validators.required]),
@@ -74,6 +76,26 @@ export class ProductListComponent implements OnInit {
       data: {
         item: item,
         form: this.formProduct,
+        isNew: false,
+      },
+      maxWidth: '800px',
+      minWidth: '400px',
+      width: '100%',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.loadGridItems();
+      }
+    });
+  }
+
+  addItem(): any {
+    const dialogRef = this.dialog.open(ProductDialogComponent, {
+      data: {
+        item: {},
+        form: this.formNewProduct,
+        isNew: true,
       },
       maxWidth: '800px',
       minWidth: '400px',

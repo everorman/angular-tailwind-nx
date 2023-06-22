@@ -1,7 +1,5 @@
 import { inject } from '@angular/core';
 import { ResolveFn } from '@angular/router';
-import { GridDataResult } from '@progress/kendo-angular-grid';
-import { map } from 'rxjs';
 import { ProductService } from '../services/product.service';
 import { Product } from '../services/product.types';
 

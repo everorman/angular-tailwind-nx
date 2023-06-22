@@ -1,7 +1,8 @@
 <div class="flex justify-end items-center mb-sm">
+    <button mat-raised-button color="primary" class="mr-auto" (click)="addItem()">Add product</button>
     <strong class="mr-sm">Filter by category:</strong>
-    <kendo-dropdownlist class="max-w-md" [data]="dropDownItems" [defaultItem]="defaultItem" textField="text"
-        valueField="value" (valueChange)="handleFilterChange($event)">
+    <kendo-dropdownlist class="max-w-md" [data]="dropDownItems" [defaultItem]="defaultItem" textField="name"
+        valueField="id" (valueChange)="handleFilterChange($event)">
     </kendo-dropdownlist>
 </div>
 

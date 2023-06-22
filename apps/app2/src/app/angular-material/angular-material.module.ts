@@ -12,6 +12,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatRadioModule,
     MatDividerModule,
     MatExpansionModule,
+    MatAutocompleteModule,
   ],
   exports: [
     MatToolbarModule,
@@ -43,6 +45,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatRadioModule,
     MatDividerModule,
     MatExpansionModule,
+    MatAutocompleteModule,
   ],
 })
 export class AngularMaterialModule {}

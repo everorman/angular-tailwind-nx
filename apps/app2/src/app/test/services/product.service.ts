@@ -9,9 +9,18 @@ import { Product } from './product.types';
 export class ProductService {
   constructor(private http: HttpClient) {}
 
-  getProducts(skip = 0, pageSize = 10, filterTerm = ''): Observable<Product[]> {
-    const routePath = `https://api.escuelajs.co/api/v1/products?&categoryId=${filterTerm}`;
+  getProducts(skip = 0, pageSize = 10, filterTerm = 0): Observable<Product[]> {
+    const routePath = filterTerm
+      ? `https://api.escuelajs.co/api/v1/products?&categoryId=${filterTerm}`
+      : `https://api.escuelajs.co/api/v1/products`;
     return this.http.get<Product[]>(routePath);
+  }
+
+  add(data: Product) {
+    console.log('Testing');
+    const path = `https://api.escuelajs.co/api/v1/products`;
+    delete data.id;
+    return this.http.post(path, data);
   }
 
   update(data: Product) {
