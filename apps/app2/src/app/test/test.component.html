@@ -19,9 +19,17 @@
                 <span class="px-sm">Profile</span>
             </a>
         </div>
+        <div class="flex-1 px-1 space-y-2 overflow-hidden hover:overflow-auto">
+            <a [routerLink]="'charts'"
+                class="flex items-center w-full space-x-2 text-primary-dark rounded-sm p-sm hover:text-white hover:bg-primary">
+                <mat-icon>bar_chart</mat-icon>
+                <span class="px-sm">Charts</span>
+            </a>
+        </div>
     </mat-drawer>
 
     <div class="sidenav-content">
+        <angular-nx-tailwind-loading></angular-nx-tailwind-loading>
         <angular-nx-tailwind-top-bar (toggleEvent)="toggle()"></angular-nx-tailwind-top-bar>
 
         <div class="container ml-auto mr-auto mt-sm px-md py-md">

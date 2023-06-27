@@ -1,14 +1,16 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Observable, Subscription, map, startWith, tap } from 'rxjs';
+import { Observable, Subscription, delay, map, startWith, tap } from 'rxjs';
 import { ProductService } from '../services/product.service';
 import { Category, Product } from '../services/product.types';
 import { categories } from '../product-list/categories';
+import { LoadingService } from '@angular-tailwind-nx/lib3';
 @Component({
   selector: 'angular-nx-tailwind-product-dialog',
   templateUrl: './product-dialog.component.html',
   styleUrls: ['./product-dialog.component.scss'],
+  providers: [LoadingService, ProductService],
 })
 export class ProductDialogComponent implements OnInit, OnDestroy {
   formProduct!: FormGroup;
@@ -19,7 +21,8 @@ export class ProductDialogComponent implements OnInit, OnDestroy {
   constructor(
     public dialogRef: MatDialogRef<ProductDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private service: ProductService
+    private service: ProductService,
+    private loading: LoadingService
   ) {
     const { item, form, isNew } = data;
     const itemData = item['dataItem'];
@@ -55,7 +58,6 @@ export class ProductDialogComponent implements OnInit, OnDestroy {
   }
 
   save(): any {
-    console.log('Saving', this.isNew);
     if (this.isNew) {
       this.addNew();
     } else {
@@ -67,14 +69,16 @@ export class ProductDialogComponent implements OnInit, OnDestroy {
     if (this.formProduct.invalid) {
       this.formProduct.markAllAsTouched();
     } else {
-      this.subscription = this.service
+      const obs = this.service
         .update(this.formProduct.value as any as Product)
         .pipe(
+          delay(700),
           tap((result) => {
             this.dialogRef.close(result);
           })
-        )
-        .subscribe();
+        );
+      this.loading.showLoaderUntilCompleted(obs);
+      this.subscription = obs.subscribe();
     }
   }
 
@@ -87,14 +91,16 @@ export class ProductDialogComponent implements OnInit, OnDestroy {
       body.images = ['https://placeimg.com/640/480/any'];
       delete body.category;
       console.log(body);
-      this.subscription = this.service
+      const obs = this.service
         .add(this.formProduct.value as any as Product)
         .pipe(
+          delay(200),
           tap((result) => {
             this.dialogRef.close(result);
           })
-        )
-        .subscribe();
+        );
+      this.loading.showLoaderUntilCompleted(obs);
+      this.subscription = obs.subscribe();
     }
   }
 

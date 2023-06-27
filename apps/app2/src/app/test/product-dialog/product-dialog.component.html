@@ -1,3 +1,4 @@
+<angular-nx-tailwind-loading></angular-nx-tailwind-loading>
 <h1 mat-dialog-title>Product detail</h1>
 <div mat-dialog-content>
     <form [formGroup]="formProduct" class="w-full flex flex-col">
@@ -36,7 +37,7 @@
             <mat-error
                 *ngIf="formProduct.get('price')?.errors">{{getErrorMessage(formProduct.get('price'))}}</mat-error>
         </mat-form-field>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" *ngIf="!isNew">
             <mat-label>Choose a date</mat-label>
             <input matInput [matDatepicker]="picker" formControlName="creationAt" readonly>
             <mat-hint>MM/DD/YYYY</mat-hint>

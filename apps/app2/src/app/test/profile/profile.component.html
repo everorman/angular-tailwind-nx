@@ -1,1 +1,54 @@
-<p>profile works!</p>
+<div class="flex flex-col md:flex-row mb-md">
+    <div
+        class="card rounded-lg md:w-1/4 bg-opacity-80 shadow-md hover:shadow-xl flex flex-col content-center items-center">
+
+        <div class="icon rounded-full w-md h-md bg-primary-light mb-md"></div>
+        <p class="mt-3 bold">Demo text</p>
+        <span class="text-7xl color text-secondary mt-3">19</span>
+    </div>
+    <div
+        class="card rounded-lg md:w-1/4 bg-opacity-80 shadow-md hover:shadow-lg flex flex-col content-center items-center">
+
+        <div class="icon rounded-full w-md h-md bg-primary-light mb-md"></div>
+        <p class="mt-3 bold">Demo text</p>
+        <span class="text-7xl color text-secondary mt-3">19</span>
+    </div>
+    <div
+        class="card rounded-lg md:w-1/4 bg-opacity-80 shadow-md hover:shadow-lg flex flex-col content-center items-center">
+
+        <div class="icon rounded-full w-md h-md bg-primary-light mb-md"></div>
+        <p class="mt-3 bold">Demo text</p>
+        <span class="text-7xl color text-secondary mt-3">19</span>
+    </div>
+    <div
+        class="card rounded-lg md:w-1/4 bg-opacity-80 shadow-md hover:shadow-lg flex flex-col content-center items-center">
+
+        <div class="icon rounded-full w-md h-md bg-primary-light mb-md"></div>
+        <p class="mt-3 bold">Demo text</p>
+        <span class="text-7xl color text-secondary mt-3">19</span>
+    </div>
+
+</div>
+<mat-divider></mat-divider>
+
+<kendo-chart class="mt-mb">
+    <kendo-chart-title text="Units sold"></kendo-chart-title>
+
+    <kendo-chart-category-axis>
+        <kendo-chart-category-axis-item [categories]="['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']"
+            [title]="{ text: 'Months' }">
+        </kendo-chart-category-axis-item>
+    </kendo-chart-category-axis>
+
+    <kendo-chart-series-defaults [highlight]="{ inactiveOpacity: 0.3 }">
+    </kendo-chart-series-defaults>
+
+    <kendo-chart-series>
+        <kendo-chart-series-item type="area" [data]="[123, 276, 310, 212, 240, 156, 98]">
+        </kendo-chart-series-item>
+        <kendo-chart-series-item type="area" [data]="[165, 210, 287, 144, 190, 167, 212]">
+        </kendo-chart-series-item>
+        <kendo-chart-series-item type="area" [data]="[56, 140, 195, 46, 123, 78, 95]">
+        </kendo-chart-series-item>
+    </kendo-chart-series>
+</kendo-chart>

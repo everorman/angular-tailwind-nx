@@ -1,0 +1,29 @@
+<div class="flex sm:flex-col">
+    <div class="">
+        <kendo-treeview [nodes]="dataTreeView" textField="text" kendoTreeViewHierarchyBinding childrenField="items"
+            [filterable]="true" kendoTreeViewExpandable [expandedKeys]="expandedKeys" kendoTreeViewCheckable
+            [(checkedKeys)]="checkedKeys" (nodeClick)="onNodeClick($event)">
+        </kendo-treeview>
+    </div>
+    <div class="flex-1">
+        <kendo-chart class="mb-md">
+            <kendo-chart-series>
+                <kendo-chart-series-item type="column" [data]="seriesData" field="sales" categoryField="product">
+                    <kendo-chart-series-item-tooltip format="Series 1 value: {0}">
+                    </kendo-chart-series-item-tooltip>
+                </kendo-chart-series-item>
+            </kendo-chart-series>
+        </kendo-chart>
+        <mat-divider></mat-divider>
+        <kendo-chart class="mt-md">
+            <kendo-chart-series>
+                <kendo-chart-series-item *ngFor="let item of series" [data]="item.items" [name]="item.value"
+                    field="value" categoryField="interval" type="line">
+                    <kendo-chart-series-item-tooltip format="Series 1 value: {0}">
+                    </kendo-chart-series-item-tooltip>
+                </kendo-chart-series-item>
+            </kendo-chart-series>
+        </kendo-chart>
+    </div>
+
+</div>

@@ -1,9 +1,12 @@
-<div class="flex justify-end items-center mb-sm">
-    <button mat-raised-button color="primary" class="mr-auto" (click)="addItem()">Add product</button>
-    <strong class="mr-sm">Filter by category:</strong>
-    <kendo-dropdownlist class="max-w-md" [data]="dropDownItems" [defaultItem]="defaultItem" textField="name"
-        valueField="id" (valueChange)="handleFilterChange($event)">
-    </kendo-dropdownlist>
+<div class="flex flex-col md:flex-row justify-end items-center mb-sm">
+    <button mat-raised-button color="primary" class="mr-auto w-full md:max-w-sm" (click)="addItem()">Add
+        product</button>
+    <div class="flex flex-col md:flex-row md:max-w-md w-full">
+        <strong class="mr-sm">Filter by category:</strong>
+        <kendo-dropdownlist [data]="dropDownItems" [defaultItem]="defaultItem" textField="name" valueField="id"
+            (valueChange)="handleFilterChange($event)">
+        </kendo-dropdownlist>
+    </div>
 </div>
 
 <kendo-grid [kendoGridBinding]="(gridItems | async) || []" [pageSize]="pageSize" [pageable]="true" [sortable]="true"

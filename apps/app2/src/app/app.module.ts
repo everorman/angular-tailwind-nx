@@ -8,6 +8,10 @@ import { ExampleComponent } from './example/example.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+import { ChartsModule } from '@progress/kendo-angular-charts';
+import 'hammerjs';
+
+
 
 
 
@@ -21,6 +25,7 @@ import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
     Lib2Module,
     GridModule,
     DropDownsModule,
+    ChartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

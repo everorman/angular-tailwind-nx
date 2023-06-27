@@ -14,6 +14,15 @@ import { ProductService } from './services/product.service';
 import { TestComponent } from './test.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { ChartsComponent } from './charts/charts.component';
+import { TreeViewModule } from '@progress/kendo-angular-treeview';
+// Imports the Chart module
+import { ChartModule } from '@progress/kendo-angular-charts';
+
+// Imports the Sparkline module
+import { SparklineModule } from '@progress/kendo-angular-charts';
+import { LoadingService } from '@angular-tailwind-nx/lib3';
+import { Lib3Module } from '@angular-tailwind-nx/lib3';
 
 const routes: Routes = [
   {
@@ -34,6 +43,13 @@ const routes: Routes = [
           products: productsResolver,
         },
       },
+      {
+        path: 'charts',
+        component: ChartsComponent,
+        resolve: {
+          products: productsResolver,
+        },
+      },
       { path: '', redirectTo: '/test/list', pathMatch: 'full' },
       {
         path: '**',
@@ -42,6 +58,7 @@ const routes: Routes = [
     ],
   },
 ];
+
 @NgModule({
   declarations: [
     TestComponent,
@@ -49,7 +66,9 @@ const routes: Routes = [
     ProductDialogComponent,
     ProfileComponent,
     TopBarComponent,
+    ChartsComponent,
   ],
+  providers: [ProductService, MatDatepickerModule, LoadingService],
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
@@ -60,7 +79,10 @@ const routes: Routes = [
     FormsModule,
     DropDownsModule,
     PDFModule,
+    ChartModule,
+    SparklineModule,
+    TreeViewModule,
+    Lib3Module,
   ],
-  providers: [ProductService, MatDatepickerModule],
 })
 export class TestModule {}
